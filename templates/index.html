@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
- <h1>this is my html file</h1>
-</body>
-</html>
+{% extends 'master/base.html' %}
+
+{% block 'content' %}
+
+  <p>this is my index page or home page</p>
+<table border="1">
+    <tr>
+        <td>Name</td>
+    </tr>
+    <tr>
+        <td>Ram</td>
+    </tr>
+    <tr>
+        <td>Sita</td>
+    </tr>
+    <tr>
+        <td>Gita</td>
+    </tr>
+</table>
+
+{% endblock %}
