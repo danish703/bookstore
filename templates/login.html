@@ -1,5 +1,30 @@
 {% extends 'master/base.html' %}
 
 {% block 'content' %}
-   <h3>login page </h3>
+   <div class="container">
+    <div class="row justify-content-md-center"">
+        <div class="col-6">
+           <div class="card">
+                 <div class="card-header">
+                   Login
+                 </div>
+                 <div class="card-body">
+                    <form method="post">
+                       {% csrf_token %}
+                   <div class="mb-3">
+                   <label for="exampleInputEmail1" class="form-label">Username</label>
+                   <input type="text" name="username" class="form-control" id="user" aria-describedby="emailHelp">
+                 </div>
+                     <div class="mb-3">
+                   <label for="exampleInputEmail1" class="form-label">Password</label>
+                   <input type="password" name="pass" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 </div>
+                    <button type="submit" class="btn btn-primary" style="float:right;">Login</button>
+                       </form>
+                 </div>
+
+               </div>
+        </div>
+    </div>
+ </div>
 {% endblock %}
