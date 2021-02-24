@@ -1,6 +1,6 @@
 {% extends 'master/base.html' %}
 
-{% block 'title' %} Edit Book {% endblock %}
+{% block 'title' %} Add Staff {% endblock %}
 
 
 {% block 'content' %}
@@ -9,12 +9,13 @@
     <div class="row">
         {% include 'components/sidenav.html' %}
         <div class="col-8">
-            <h3>Edit Book</h3>
+            <h3>Add Staff</h3>
             <hr/>
             <form method="post" enctype="multipart/form-data">
-                {{form.as_p}}
+                {{form}}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-success">Save</button>
+                <hr/>
+                <button type="submit" style="float:right;" class="btn btn-success">Save</button>
             </form>
         </div>
     </div>

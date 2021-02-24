@@ -9,7 +9,25 @@
     <div class="row">
         {% include 'components/sidenav.html' %}
         <div class="col-8">
+            {% include 'components/error.html' %}
             <h3>Books</h3>
+            <div class="row">
+                {% for b in book %}
+                  <div class="col-md-6" style="margin-top:10px;">
+                      <div class="card" style="width: 18rem;">
+                      <img src="{{MEDIA_URL}}{{b.coverimage.url}}" style="height:150px;" class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5>{{b.name}}</h5>
+                        <p class="card-text">{{b.description|truncatewords:15}}</p>
+                      </div>
+                      <div class="card-footer">
+                          <a href="{% url 'details' b.id %}">Read more</a>
+                      </div>
+
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

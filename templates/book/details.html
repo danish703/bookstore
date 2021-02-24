@@ -1,0 +1,23 @@
+{% extends 'master/base.html' %}
+
+{% block 'title' %}Book details {% endblock %}
+
+
+{% block 'content' %}
+
+<div class="container">
+    <div class="row">
+        {% include 'components/sidenav.html' %}
+        <div class="col-8">
+            <h3>{{book.name}}</h3>
+            <span>{{book.author}}</span>&nbsp; &nbsp;&nbsp; ISBN: <span>{{book.isbn}}</span>
+            <span style="float:right;"><a href="{% url 'bookedit' book.id %}">Edit</a> | <a href="{% url 'delete' book.id %}">del</a> </span>
+            <hr/>
+            <img src="{{MEDIA_URL}}{{book.coverimage.url}}" style="width:40%">
+            <hr/>
+            {{book.description}}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
