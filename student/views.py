@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from .forms import AddStudentForm
+from .forms import AddStudentForm,BookRequestForm
 from django.contrib.auth.models import User
 from .models import Student
 from django.contrib import messages
 from userauth.views import isStudent
+from book.models import Book
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def add(request):
@@ -38,6 +39,29 @@ def add(request):
 @login_required(login_url='signin')
 def dashboard(request):
     if isStudent(request.user.id):
-        return render(request,'studentdashboard.html')
+        context = {
+            'books':Book.objects.all(),
+        }
+        return render(request,'studentdashboard.html',context)
     else:
         return redirect('signout')
+
+@login_required(login_url='signin')
+def bookrequest(request,id):
+    if isStudent(request.user.id):
+        form = BookRequestForm(request.POST or None)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.book_id = id
+            s = Student.objects.get(user_id=request.user.id)
+            data.student_id = s.id
+            data.save()
+            messages.add_message(request,messages.SUCCESS,"successfully ordered")
+            return redirect('studentdashboard')
+        context = {
+            'form':form,
+        }
+        return render(request,'request.html',context)
+    else:
+        return redirect('signout')
+

@@ -18,7 +18,8 @@ class BookOrder(models.Model):
     student = models.ForeignKey(Student,on_delete=models.CASCADE)
     issueDate = models.DateTimeField(auto_now_add=True)
     returnDate = models.DateTimeField()
-    issueBy = models.ForeignKey(Staff,on_delete=models.CASCADE)
+    issueBy = models.ForeignKey(Staff,on_delete=models.CASCADE,default=1)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.student.firstname

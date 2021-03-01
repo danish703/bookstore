@@ -1,0 +1,48 @@
+{% extends 'master/base.html' %}
+
+{% block 'content' %}
+
+<div class="container">
+    <div class="row">
+       {% include 'components/sidenav.html' %}
+        <div class="col-8">
+            {% include 'components/error.html' %}
+          <div class="row">
+               <table class="table">
+                    <thead>
+                    <th>Student Name</th>
+                    <th>Book Name</th>
+                    <th>Issue Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    </thead>
+                   <tbody>
+                     {% for o in orderlist %}
+                       <tr>
+                           <td>{{o.student}}</td>
+                           <td>{{o.book}}</td>
+                           <td>{{o.issueDate}}</td>
+                           <td>{{o.returnDate}}</td>
+                           <td>
+                               {% if o.status %}
+                                  <span>Status: Accepted</span>
+                                 <a href="#" class="btn btn-danger">Cancel</a>
+                               {% else %}
+                                  <span>Status: Rejected or Pending.</span>
+                                 <a href="#" class="btn btn-success">Accept</a>
+                               {% endif %}
+
+
+
+                           </td>
+                       </tr>
+
+                    {% endfor %}
+                   </tbody>
+               </table>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

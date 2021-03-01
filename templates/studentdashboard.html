@@ -4,13 +4,27 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-4">
-            Student ko side nav yeta hunxa
-        </div>
+            {% include 'components/studentsidenav.html' %}
+
         <div class="col-8">
-          <div class="row">
+
                {% include 'components/error.html' %}
-              <h5>Student Dashboard</h5>
+          <div class="row">
+              {% for b in books %}
+                  <div class="col-md-6" style="margin-top:10px;">
+                      <div class="card" style="width: 18rem;">
+                      <img src="{{MEDIA_URL}}{{b.coverimage.url}}" style="height:150px;" class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5>{{b.name}}</h5>
+                        <p class="card-text">{{b.description|truncatewords:15}}</p>
+                      </div>
+                      <div class="card-footer">
+                          <a href="{% url 'bookrequest' b.id %}">Borrow Now</a>
+                      </div>
+
+                    </div>
+                  </div>
+                {% endfor %}
           </div>
         </div>
     </div>

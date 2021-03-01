@@ -3,7 +3,22 @@ from .forms import AddStaffForm
 from django.contrib.auth.models import User
 from .models import Staff
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from userauth.views import isStaff
+from book.models import BookOrder
 # Create your views here.
+@login_required(login_url='signin')
+def orderlist(request):
+    if isStaff(request.user.id):
+        context = {
+            'orderlist': BookOrder.objects.all()
+        }
+        return render(request,'orderlist.html',context)
+    else:
+        return redirect('signout')
+
+
+
 def add(request):
     if request.method=='GET':
         context = {
